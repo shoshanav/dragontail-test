@@ -1,0 +1,41 @@
+<div class="wdt-49-p mrgn-b10 dsp-inbl">
+  {{template "dealers/_edit_api_key.html"}}
+</div>
+
+<div class="wdt-49-p mrgn-b10 mrgn-l10 dsp-inbl">
+{{template "invoices/_recreate_invoice.html"}}
+</div>
+
+<div class="grey-light brd-rdius-2">
+    <p class="txt-center mrgn-b5 ln-hgt-2 fnt-size-18 bold">EZcount Errors</p>
+</div>
+<div class="grey-light container-fluid">
+    <table id="ezcount-errors-table" class="table table-striped table-hover">
+        <thead>
+        <th> Driver ID</th>
+        <th> Driver CRN</th>
+        <th> Action</th>
+        <th> EZcount Error Reason</th>
+        <th> Invoice Month</th>
+        <th> Date Of Error</th>
+        </thead>
+        <tbody>
+        {{range .reports}}
+        <tr class="grey-light">
+            <td>{{.DriverExternalID}}</td>
+            <td>{{.CompanyCrn}}</td>
+            <td>{{.Action}}</td>
+            <td>{{.Error}}</td>
+            <td>{{date .InvoiceMonth "M Y"}}</td>
+            <td>{{date .CreatedAt "d/m/Y H:i"}}</td>
+        </tr>
+        {{end}}
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        ezcountErrorTable = new EzcountErrorTable();
+    })
+</script>

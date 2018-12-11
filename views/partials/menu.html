@@ -1,0 +1,6 @@
+<ul class="nav navbar-nav">
+    {{range $service_name, $service_url := .menu}}
+    <li class="separator"></li>
+    <li class="active"><a href="{{$service_url}}">{{$service_name}}</a></li>
+    {{end}}
+</ul>

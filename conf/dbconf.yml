@@ -1,0 +1,20 @@
+development:
+  host: localhost
+  driver: postgres
+  open: dbname=dragontail  sslmode=disable
+  user_name:
+  password:
+  log: true
+  database: dragontail
+  open_pool: 20
+  idle_pool: 10
+test:
+  host: localhost
+  driver: postgres
+  open: dbname=dragontail_test  sslmode=disable
+  user_name:
+  password:
+  log: true
+  database: dragontail_test
+  open_pool: 20
+  idle_pool: 10

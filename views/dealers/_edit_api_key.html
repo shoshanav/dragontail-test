@@ -1,0 +1,51 @@
+<div class="grey-light brd-rdius-2">
+    <p class="txt-center mrgn-b5 ln-hgt-2 fnt-size-18 bold">Update API Key</p>
+</div>
+<div class="grey-light container-fluid pdng-t20">
+    <div class="mrgn-b20 flt-l">
+        <span class="bold flt-l dsp-inbl"> Description: </span>
+        <span class="flt-l mrgn-l5 wdt-80-pr">This feature enables you to search for API key by CRN number and update it if necessary</span>
+    </div>
+
+        <form role="form" id="search-by-crn" class="flt-l wdt-100-p mrgn-b10" data-toggle="validator">
+            <span class="wdt-105 dsp-inbl"> CRN* </span>
+            <input id="crn" name="crn" type="number" required="true" minlength="7" maxlength="9"
+                   class="mrgn-l5 form-control dsp-inbl max-wdt-285"
+                   placeholder="Insert driver CRN number (e.g 31234567)">
+            <btn type="submit" class="search btn btn-default wdt-126 dsp-inbl  flt-r">
+                <span class="mrg-l15"> Search</span>
+            </btn>
+        </form>
+
+    <div id="dealer-details hidden">
+        <div class="flt-l wdt-100-p mrgn-b10">
+            <span class="wdt-105 dsp-inbl"> Fix Name </span>
+            <span id="fix-name" class="break-wrd max-wdt-285 mrgn-l5 fnt-grey">
+                Will be displayed according to search
+            </span>
+        </div>
+
+        <div class="flt-l wdt-75-p mrgn-b10">
+            <span class="flt-l wdt-105 dsp-inbl flt-l"> Current API Key</span>
+
+            <span id="current-api-key" class="max-wdt-285 flt-l mrgn-l5 fnt-grey break-wrd">
+                Will be displayed according to search
+            </span>
+        </div>
+            <form role="form" id="update-api-key" class="flt-l wdt-100-p mrgn-b20" data-toggle="validator">
+                <span class="wdt-105  dsp-inbl"> New API Key*</span>
+                <input name="api_key" id="api_key" required="true" type="text"
+                       class="mrgn-l5 form-control dsp-inbl max-wdt-285"
+                       placeholder="Insert the new API key">
+                <btn type="submit" class="update btn btn-default btn-primary wdt-126 dsp-inbl  flt-r">
+                    <span class="mrg-l15"> Update API Key</span>
+                </btn>
+            </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        updateApiKey = new UpdateApiKey();
+    })
+</script>

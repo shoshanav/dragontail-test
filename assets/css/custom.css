@@ -1,0 +1,28 @@
+#restaurants-container {
+    padding-top: 30px;
+}
+.center-table td, .center-table th {
+    text-align: center;
+}
+
+.dt-send-sms .btn {
+    padding-right: 10px;
+    padding-left: 12px;
+}
+
+.dt-send-sms {
+    vertical-align: middle !important;
+}
+
+.btn-default:active, .btn-default.active {
+    background-color: #337ab7 !important;
+    font-weight: bold;
+}
+
+.modal-header h5{
+    font-size: 17px;
+}
+
+.modal-body {
+    font-size: 15px;
+}
