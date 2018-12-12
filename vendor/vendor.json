@@ -1,0 +1,145 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "+b9zh+Ktm7tWgg7J6qJ3+oZYtrA=",
+			"path": "github.com/astaxie/beego",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "ntFfzRbMb1fzrIENnFN00ANDFLs=",
+			"path": "github.com/astaxie/beego/config",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "s+gj1rES9SvvCIyF8W2tzlziSPE=",
+			"path": "github.com/astaxie/beego/context",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "PDNn16w89zWODshT9zlPzSmWZFA=",
+			"path": "github.com/astaxie/beego/grace",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "bsSuj8Nf6TdZk8TxnogpSmk7eX0=",
+			"path": "github.com/astaxie/beego/logs",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "fMwzAGPXXCLFJV4zBIJD+DBAa08=",
+			"path": "github.com/astaxie/beego/session",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "rxxln8GHFToVnaEJz4JMv0WbaKc=",
+			"path": "github.com/astaxie/beego/toolbox",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "95wt85GTZG0zi3Zk8g2jOVFV6Zg=",
+			"path": "github.com/astaxie/beego/utils",
+			"revision": "b55e20ac60c5c2f4ec9612ec68a48cb94cfaab42",
+			"revisionTime": "2017-01-23T13:12:58Z"
+		},
+		{
+			"checksumSHA1": "BVLcEDQelqXp6x9u4mbrxE7rxKs=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "472c70caa40267cb89fd8facb07fe6454b578626",
+			"revisionTime": "2018-11-03T14:14:39Z"
+		},
+		{
+			"checksumSHA1": "0Pry12nZ6UQBd1iXEtszySSfFpI=",
+			"path": "github.com/jinzhu/gorm/dialects/postgres",
+			"revision": "472c70caa40267cb89fd8facb07fe6454b578626",
+			"revisionTime": "2018-11-03T14:14:39Z"
+		},
+		{
+			"checksumSHA1": "4eelJOSLZoDzLuaJvgilOBVNovU=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "04140366298a54a039076d798123ffa108fff46c",
+			"revisionTime": "2018-03-08T03:36:59Z"
+		},
+		{
+			"checksumSHA1": "xxLSo5tKtXc7jGrR70yoEfza8Cw=",
+			"path": "github.com/lib/pq",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "EnMmNGgpDa5sNw0Zs5RhvNDcP2g=",
+			"path": "github.com/lib/pq/hstore",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "ATnwV0POluBNQEMjPdylodz0oK0=",
+			"path": "github.com/lib/pq/oid",
+			"revision": "9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee",
+			"revisionTime": "2018-10-16T16:26:27Z"
+		},
+		{
+			"checksumSHA1": "Rst+sxBlGOlkkuhf/f3TTOjJKyA=",
+			"path": "github.com/saturn4er/beego-assets",
+			"revision": "8051e60bbbebcb69ce45cfba2a075517cc8c7b83",
+			"revisionTime": "2017-02-19T10:12:24Z"
+		},
+		{
+			"checksumSHA1": "SOB3whm8gc2xsL6j7exUFghj94s=",
+			"path": "github.com/tdewolff/buffer",
+			"revision": "df6253e2a2cda5aba1b5d0c59fc5bdf0a98ae192",
+			"revisionTime": "2017-01-15T11:41:28Z"
+		},
+		{
+			"checksumSHA1": "aOx9JqecdG4tSpzdRyohR56FUMo=",
+			"path": "github.com/tdewolff/minify",
+			"revision": "6d70711b499d8eec542902d2ce0471319caa8fa9",
+			"revisionTime": "2017-05-15T20:00:33Z"
+		},
+		{
+			"checksumSHA1": "8YbF2WE+p+vJquM8j8fvapWmRDg=",
+			"path": "github.com/tdewolff/minify/css",
+			"revision": "6d70711b499d8eec542902d2ce0471319caa8fa9",
+			"revisionTime": "2017-05-15T20:00:33Z"
+		},
+		{
+			"checksumSHA1": "ILlBP4Y6bJ7ufMHpznqfC3FIfic=",
+			"path": "github.com/tdewolff/minify/js",
+			"revision": "6d70711b499d8eec542902d2ce0471319caa8fa9",
+			"revisionTime": "2017-05-15T20:00:33Z"
+		},
+		{
+			"checksumSHA1": "EiTbuOQ08YQ0Foy0R8y4WlbVcvA=",
+			"path": "github.com/tdewolff/parse",
+			"revision": "874ae8f11398b50821e877e5a32c6addaccc699b",
+			"revisionTime": "2017-05-10T14:09:52Z"
+		},
+		{
+			"checksumSHA1": "DXP+W4tt2j/iMPH50/Ebj/KLlsU=",
+			"path": "github.com/tdewolff/parse/css",
+			"revision": "874ae8f11398b50821e877e5a32c6addaccc699b",
+			"revisionTime": "2017-05-10T14:09:52Z"
+		},
+		{
+			"checksumSHA1": "3DXie+etpiC4fvqPOo4q1eMsbwY=",
+			"path": "github.com/tdewolff/parse/js",
+			"revision": "874ae8f11398b50821e877e5a32c6addaccc699b",
+			"revisionTime": "2017-05-10T14:09:52Z"
+		},
+		{
+			"checksumSHA1": "hR7GEsOkEtR/doq2kiCmOF8spEg=",
+			"path": "github.com/tdewolff/strconv",
+			"revision": "3e8091f4417ebaaa3910da63a45ea394ebbfb0e3",
+			"revisionTime": "2016-04-27T18:05:39Z"
+		}
+	],
+	"rootPath": "github.com/shoshanav/dragontail-test"
+}
