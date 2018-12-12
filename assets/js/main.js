@@ -11,8 +11,6 @@ $( document ).ready(function() {
                 resetDataTable();
             }
         }
-
-
         else
         {
             $(".alert").addClass("hide");
@@ -24,64 +22,55 @@ $( document ).ready(function() {
         }
     });
 
-    $("#sap-failed-invoices").on("click",".dt-mark-uploaded button", function(){
-        let invoiceId = this.closest("tr").dataset.invoice_id
-        let button = this;
-        $.post( "/invoices/mark_as_uploaded/" + invoiceId, function( data ) {
-            if (data["success"]){
-                $(".alert-info strong").text(data["success"]);
-                $(".alert-info").removeClass("hide");
-                $(button).addClass("btn-success").html("MARKED");
-            }
-        });
-    });
-
-    $( "#search-by-name-form" ).submit(function() {
-        $( ':button[type="submit"]' ).prop('disabled', true);
-        $.get( "/restaurant/search?restaurantName=" + $("#res-name-input").val(), function( data ) {
-            if (data["error"]){
-                $(".alert-danger strong").text(data["error"]);
-                $(".alert-danger").removeClass("hide");
-                if($('#restaurants').hasClass("dataTable")) {
-                    resetDataTable();
+    $("#restaurants-container").on("click", "#delete-btn", function(){
+        let row = $(this).closest('tr')
+        let resId = datatable.row(row).data()["id"];
+        $.ajax({
+            url: "/restaurant/" + resId,
+            type: "DELETE",
+            success: function(result) {
+                if (result["success"]) {
+                    datatable.row(row).remove().draw();
                 }
             }
-            else
-            {
-                $(".alert").addClass("hide");
-
-                if($('#restaurants').hasClass("dataTable")) {
-                    refreshDataTable(data["restaurants"]);
-                } else {
-                    getGeoCode(data);
-                    datatable = initDataTable($('#restaurants'), data);
-                }
-            }
-            $(':button[type="submit"]').prop('disabled', false);
         });
         return false;
     });
 
-    // Edit record
-    $('#restaurants').on('click', 'a.editor_edit', function (e) {
-        e.preventDefault();
+    $("#restaurants-container").on("click", "#edit-btn", function(){
+        let row = $(this).closest('tr')
+        let rowData = datatable.row(row).data();
+        $.each(rowData, function(key, value) {
+            $("#" + key + "_input").val(value);
+        });
+        $('.modal').modal('show');
+        return false;
+    });
 
-        editor.edit( $(this).closest('tr'), {
-            title: 'Edit record',
-            buttons: 'Update'
-        } );
-    } );
-
-    // Delete a record
-    $('#restaurants').on('click', 'a.editor_remove', function (e) {
-        e.preventDefault();
-
-        editor.remove( $(this).closest('tr'), {
-            title: 'Delete record',
-            message: 'Are you sure you wish to remove this record?',
-            buttons: 'Delete'
-        } );
-    } );
+    $("form").submit(function() {
+        let resId = $("#id_input").val();
+        let formData = $('form').serializeArray();
+        var jsonData = formData.reduce(function(map, obj) {
+            map[obj.name] = obj.value;
+            return map;
+        }, {});
+        $.ajax({
+            url: "/restaurant/" + resId,
+            type: "PUT",
+            contentType: "json",
+            data: JSON.stringify(jsonData),
+            success: function(result) {
+                if (result["restaurant"]){
+                    $('.modal').modal('hide');
+                    datatable.row('#' + resId).data(result["restaurant"]).draw();
+                }
+            },
+            failure: function(result) {
+                $('.modal').modal('hide');
+            }
+        });
+        return false;
+    });
 
     if (window["WebSocket"]) {
         try {
@@ -114,11 +103,13 @@ function initDataTable(table, data) {
         {title: "Type", data: "type", width: "15%"},
         {title: "Phone", data: "phone", width: "15%"},
         {title: "Address", data: "address", width: "70%"},
-        {title: "Edit/Delete", data: null, width: "20%", className: "center", defaultContent: '<a href="" class="editor_edit">Edit</a> / <a href="" class="editor_remove">Delete</a>'}
+        {title: "Edit/Delete", data: null, width: "20%",
+            className: "center", defaultContent: '<a href="" id="edit-btn">Edit</a> / ' +
+                '<a href="" id="delete-btn">Delete</a>'}
     ]
     let datatable = table.dataTable({
         columnDefs: [
-            { "targets": [0,2,3], "searchable": false }
+            { "targets": [0,2,3,4,5], "searchable": false }
         ],
         paging: false,
         language: {
@@ -128,10 +119,11 @@ function initDataTable(table, data) {
         searching: true,
         ordering: false,
         data: data["restaurants"],
+        rowId: "id",
         columns: columns,
         "dom": '<"toolbar">frtip',
         'fnCreatedRow': function (nRow, aData, iDataIndex) {
-            $(nRow).attr('data-restaurant-id', aData["ID"]);
+            $(nRow).attr('resId', aData["id"]);
         },
     }).api();
 

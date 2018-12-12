@@ -3,8 +3,8 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/astaxie/beego"
-	"github.com/dragontail/lib"
-	"github.com/dragontail/models"
+	"github.com/shoshanav/dragontail-test/lib"
+	"github.com/shoshanav/dragontail-test/models"
 	"strconv"
 	"strings"
 )
@@ -19,7 +19,7 @@ func (r *RestaurantController) GetAll() {
 	if err != nil {
 		r.Data["json"] = map[string]string {"error": err.Error()}
 	} else {
-		err := geoCode(restaurants)
+		err := geoCodeMutlti(restaurants)
 		if err != nil {
 			r.Data["json"] = map[string]string {"error": err.Error()}
 		}
@@ -31,13 +31,15 @@ func (r *RestaurantController) GetAll() {
 // @router /:restaurantId [put]
 func (r *RestaurantController) Put() {
 	resId,_ := strconv.Atoi(r.Ctx.Input.Param(":restaurantId"))
+
 	var restaurant models.Restaurant
 	json.Unmarshal(r.Ctx.Input.RequestBody, &restaurant)
-	err := models.UpdateRestaurant(resId, restaurant)
+	restaurant, err := models.UpdateRestaurant(resId, restaurant)
 	if err != nil {
 		r.Data["json"] = map[string]string {"error": err.Error()}
 	} else {
-		r.Data["json"] = map[string]bool {"success": true}
+		geoCode(&restaurant)
+		r.Data["json"] = map[string]interface{} {"restaurant": restaurant}
 	}
 	r.ServeJSON()
 }
@@ -49,37 +51,30 @@ func (r *RestaurantController) Delete() {
 	if err != nil {
 		r.Data["json"] = map[string]string {"error": err.Error()}
 	} else {
-		r.Data["json"] = map[string]bool {"success": true}
+		r.Data["json"] = map[string]string {"success": "Delete Succeeded"}
 	}
 	r.ServeJSON()
 }
 
-func geoCode(restaurants []models.Restaurant) error {
-	for i, res := range restaurants {
-		locations:= strings.Split(res.Location, "/")
-		if len(locations) < 2 {
-			continue
-		}
-		address,err := lib.GetAddress(locations[0], locations[1])
-		if err != nil {
-			continue
-		}
-		restaurants[i].Address = address
+func geoCodeMutlti(restaurants []models.Restaurant) error {
+	var err error
+	for i,_ := range restaurants {
+		err = geoCode(&restaurants[i])
 	}
-	return nil
+	return err
 }
 
-//// @router /search [get]
-//func (r *RestaurantController) Search() {
-//	restaurantName := r.GetString("restaurantName")
-//	restaurants,err := models.SearchRestaurantsByName(restaurantName)
-//	if err != nil {
-//		r.Data["json"] = map[string]string {"error": err.Error()}
-//	} else {
-//		r.Data["json"] = map[string]interface{} {"restaurants": restaurants}
-//	}
-//	r.ServeJSON()
-//}
-
+func geoCode(res *models.Restaurant) error {
+	locations:= strings.Split(res.Location, "/")
+	if len(locations) < 2 {
+		return nil
+	}
+	address,err := lib.GetAddress(locations[0], locations[1])
+	if err != nil {
+		return err
+	}
+	res.Address = address
+	return nil
+}
 
 

@@ -10,6 +10,6 @@ type MainController struct {
 
 func (c *MainController) Get() {
 	c.Layout = "layout.html"
-	c.TplName = "index.html"
+	c.TplName = "partials/index.html"
 	c.Render()
 }

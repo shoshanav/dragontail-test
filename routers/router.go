@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"github.com/dragontail/controllers"
+	"github.com/shoshanav/dragontail-test/controllers"
 	"github.com/astaxie/beego"
 )
 

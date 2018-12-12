@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="js/vendor/Editor-1.8.1/editor.dataTables.css"/>
-    <script type="text/javascript" src="css/vendor/Editor-1.8.1/dataTables.editor.js"></script>
-
     <meta charset="UTF-8"/>
     <title>DragOnTail | Restaurants</title>
     {{ asset_css "ui" }}
@@ -11,8 +8,7 @@
 </head>
 <body>
 <div class="container">
-    {{ template "partials/_alerts.html" . }}
     {{ .LayoutContent }}
+    {{ template "partials/pop_up.html" .}}
 </div>
 </body>
-{{ template "partials/live_reload.html" . }}

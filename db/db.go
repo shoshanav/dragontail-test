@@ -3,7 +3,6 @@ package db
 import (
 	"bytes"
 	"encoding/csv"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	"io"
 	"os"
@@ -14,16 +13,24 @@ var (
 	DBCon *gorm.DB
 )
 
-const (
-	TABLENAME = "restaurants"
-)
-
 func InitDB(file string) error {
-	sqlStatement, err := parseCsv(file)
+	err := DBCon.Exec(`
+CREATE TABLE IF NOT EXISTS restaurants
+(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name TEXT,
+    type TEXT,
+    phone TEXT,
+    location TEXT
+);
+CREATE INDEX IF NOT EXISTS restaurants_name_idx ON restaurants (name);
+TRUNCATE restaurants
+  	`).Error
 	if err != nil {
 		return err
 	}
-	err = DBCon.Exec(fmt.Sprint("TRUNCATE ", TABLENAME)).Error
+
+	sqlStatement, err := parseCsv(file)
 	if err != nil {
 		return err
 	}

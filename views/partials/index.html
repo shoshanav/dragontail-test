@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<head>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+{{ asset_js "main" }}
 
-    <meta charset="UTF-8"/>
-    <title>DragOnTail | Restaurants</title>
-    {{ asset_css "ui" }}
-    {{ asset_js "ui" }}
-    {{ asset_js "report" }}
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/images/favicon.ico"/>
-</head>
-<body>
-<div class="container">
-    {{ template "partials/_alerts.html" . }}
-    <form id="search-by-driver-form" class="form-inline" method='GET'>
-        <div class="col-sm-offset-4" >
-            <label for="driver-id-input">Driver ID:</label>
-            <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="driver-id-input">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </form>
-
-    <div id="driver-invoices-container" class="row">
-        <table id="driver-invoices" class="table table-bordered center-table"></table>
-    </div>
-    {{ .LayoutContent }}
+<div id="restaurants-container" class="row">
+    <table id="restaurants" class="table table-bordered center-table"></table>
 </div>
-</body>
-{{ template "partials/live_reload.html" . }}

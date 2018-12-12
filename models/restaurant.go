@@ -1,8 +1,7 @@
 package models
 
 import (
-	"fmt"
-	"github.com/dragontail/db"
+	"github.com/shoshanav/dragontail-test/db"
 )
 
 type Restaurant struct {
@@ -11,7 +10,7 @@ type Restaurant struct {
 	Type       string     `json:"type"`
 	Phone	   string 	  `json:"phone"`
 	Location   string     `json:"location"`
-	Address    string     `json:"address"`
+	Address    string     `json:"address" gorm:"-"`
 }
 
 func GetAllRestaurants() ([]Restaurant, error) {
@@ -20,15 +19,10 @@ func GetAllRestaurants() ([]Restaurant, error) {
 	return restaurants, err
 }
 
-func SearchRestaurantsByName(name string) ([]Restaurant, error) {
-	var restaurants []Restaurant
-	err := db.DBCon.Where(fmt.Sprintf("name LIKE '%%%s%%'", name)).Find(&restaurants).Error
-	return restaurants, err
-}
-
-func UpdateRestaurant(id int, res Restaurant) error {
+func UpdateRestaurant(id int, res Restaurant) (Restaurant, error) {
+	res.ID = id
 	err := db.DBCon.Save(&res).Error
-	return err
+	return res, err
 }
 
 func DeleteRestaurant(id string) error {
