@@ -12,3 +12,6 @@
     {{ template "partials/pop_up.html" .}}
 </div>
 </body>
+{{ if ne $.run_mode  "prod" }}
+    {{ template "partials/live_reload.html" . }}
+{{ end }}

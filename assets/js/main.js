@@ -71,30 +71,7 @@ $( document ).ready(function() {
         });
         return false;
     });
-
-    if (window["WebSocket"]) {
-        try {
-            tryConnectToReload("ws://localhost:12450/reload");
-        }
-        catch (ex) {
-            console.error("rwetertrtert" +ex);
-        }
-    } else {
-        console.log("Your browser does not support WebSockets.");
-    }
 });
-
-function tryConnectToReload(address) {
-    var conn = new WebSocket(address);
-    conn.onclose = function () {
-        setTimeout(function () {
-            tryConnectToReload(address);
-        }, 2000);
-    };
-    conn.onmessage = function (evt) {
-        location.reload();
-    };
-}
 
 function initDataTable(table, data) {
     let columns =  [
